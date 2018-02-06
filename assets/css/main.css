@@ -918,7 +918,6 @@ table tfoot td {
   height: 100%;
   padding: 20px 10px;
   background-color: #ffffff;
-  z-index:100;
 }
 
 .nav {
@@ -932,7 +931,7 @@ table tfoot td {
 }
 
 .nav p{
-  margin-left:75%;
+  margin-left:80%;
   font-family:times;
   font-size:16pt;
   font-weight:800;
@@ -940,8 +939,8 @@ table tfoot td {
 }
 
 .nav p a {
-  padding-left:20px;
-  padding-right:20px;
+  /*padding-left:20px;
+  padding-right:20px;*/
   color:#444;
   text-decoration:none;
 }
