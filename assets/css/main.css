@@ -926,21 +926,19 @@ table tfoot td {
   top:0;
   left:0;
   width:100%;
-  height:50px;
+  height:40px;
   z-index:99;
 }
 
 .nav p{
   margin-left:80%;
   font-family:times;
-  font-size:16pt;
-  font-weight:800;
-  line-height:5px;
+  font-size:15pt;
+  font-weight:700;
+  line-height:1px;
 }
 
 .nav p a {
-  /*padding-left:20px;
-  padding-right:20px;*/
   color:#444;
   text-decoration:none;
 }
@@ -1361,6 +1359,16 @@ a.newer-posts:hover {
 /* - - - - - - - - - - Media Styles - - - - - - - - - - */
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 992px) {
+  .nav {
+  height:35px;
+  }
+  .nav p{
+  margin-left:70%;
+  font-family:times;
+  font-size:14pt;
+  font-weight:600;
+  line-height:2px;
+  }
   .post {
     width: 48%;
     max-width: 100%;
@@ -1387,6 +1395,16 @@ a.newer-posts:hover {
 
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
+  .nav {
+  height:35px;
+  }
+  .nav p{
+  margin-left:70%;
+  font-family:times;
+  font-size:11pt;
+  font-weight:600;
+  line-height:2px;
+  }
   .sidebar {
     position: relative;
     display: -webkit-box;
@@ -1449,6 +1467,16 @@ a.newer-posts:hover {
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width: 480px) {
+  .nav {
+  height:30px;
+  }
+  .nav p{
+  margin-left:60%;
+  font-family:times;
+  font-size:9pt;
+  font-weight:600;
+  line-height:2px;
+  }
   .content-box {
     padding: 10px;
   }
