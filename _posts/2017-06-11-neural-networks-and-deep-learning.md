@@ -1,7 +1,7 @@
 ---
 title: 神经网络与深度学习
 layout: post
-img: 
+img: nn.jpg
 tags: [神经网络, 机器学习]
 ---
 
