@@ -933,7 +933,7 @@ table tfoot td {
 .nav p{
   margin-left:80%;
   font-family:times;
-  font-size:15pt;
+  font-size:14pt;
   font-weight:700;
   line-height:1px;
 }
@@ -1360,7 +1360,7 @@ a.newer-posts:hover {
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 992px) {
   .nav {
-  height:35px;
+  height:40px;
   }
   .nav p{
   margin-left:70%;
@@ -1468,14 +1468,14 @@ a.newer-posts:hover {
 /* Extra Small Devices, Phones */
 @media only screen and (max-width: 480px) {
   .nav {
-  height:30px;
+  height:28px;
   }
   .nav p{
   margin-left:60%;
   font-family:times;
   font-size:9pt;
   font-weight:600;
-  line-height:2px;
+  line-height:3px;
   }
   .content-box {
     padding: 10px;
