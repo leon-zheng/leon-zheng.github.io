@@ -11,7 +11,7 @@ tags: [神经网络, 机器学习]
 
 一个感知器接受几个二进制输入，$x_1,x_2,...$ ，并产生一个二进制输出：
 
-![感知器](/assets/img/post/感知器.JPG)
+<p style="text-align:center"><img src="/assets/img/post/感知器.JPG"></p>
 
 有一个简单的规则来计算输出：引入**权重**$\omega_1,\omega_2,...$ ，表示相应输入对于输出重要性的实数；神经元的输出由分配权重后的总和$\sum_{j} \omega_j x_j$小于或者大于一些**阈值**决定。规则的代数形式为：
 $$
@@ -32,7 +32,7 @@ $$
 
 S型神经元和感知器类似，但是被修改为权重和偏置的微小改变只引起输出的微小变化。这对于神经元网络的学习是很关键的。
 
-![感知器](/assets/img/post/感知器.JPG)
+<p style="text-align:center"><img src="/assets/img/post/感知器.JPG"></p>
 
 其中：
 $$
@@ -46,7 +46,7 @@ $$
 \sigma (z)\equiv \frac{1}{1+e^{-z}}\tag{1-4}
 $$
 
-![S函数](/assets/img/post/S函数.JPG)
+<p style="text-align:center"><img src="/assets/img/post/S函数.JPG"></p>
 
 如果$z=\omega\cdot x+b\gg0$，那么$e^{-z}\approx 0,\sigma(z)\approx1$。
 
@@ -54,7 +54,7 @@ $$
 
 ### 1.3 神经网络的架构
 
-![神经网络](/assets/img/post/神经网络.JPG)
+<p style="text-align:center"><img src="/assets/img/post/神经网络.JPG"></p>
 
 神经网络可以由一个输入层、一个输出层和任意（可以是$0$）个隐藏层组成，而一般的BP神经网络有一到两个隐藏层。
 
@@ -62,7 +62,7 @@ $$
 
 我们将使用一个三层神经网络来识别单个数字：
 
-![分类网络](/assets/img/post/分类网络.JPG)
+<p style="text-align:center"><img src="/assets/img/post/分类网络.JPG"></p>
 
 网络的输入层包含给输入像素的值进行编码的神经元。我们给网络的训练数据会有很多扫描得到的$28\times 28$的手写数字的图像，所有输入层包含有$784=28\times 28$个神经元。输入像素是灰度级的，值为$0.0$表示白色，值为$1.0$表示黑色，中间数值表示逐渐暗淡的灰色。
 
@@ -233,24 +233,23 @@ $$
 
 此前使用的二次代价函数为 $C=\frac{(y-a)^{2}}{2}$。由于 $a=\sigma(z)$，$z=\omega x+b$，所以 $\frac{\partial C}{\partial \omega}=(a-y){\sigma}'(z)x$，$\frac{\partial C}{\partial b}=(a-y){\sigma}'(z)$。
 
-![S函数](/assets/img/post/S函数.JPG)
+<p style="text-align:center"><img src="/assets/img/post/S函数.JPG"></p>
 
 根据 $\sigma(z)$ 的函数性质，当神经元的实际输出与期望输出差距很大（例如期望输出为$0$，而实际输出接近$1$）时，${\sigma}'(z)$ 的值很小，从而使 $\partial C/\partial \omega$ 和 $\partial C/\partial b$ 的值变得很小，导致神经元学习缓慢。
 
 #### 3.1.1 引入交叉熵代价函数####
 
-为了解决这种问题，我们引入交叉熵代价函数：
-$$
-C=-\frac{1}{n}\sum_{x}\left [ y\ln a +(1-y)\ln(1-a) \right ]\tag{3-1}
-$$
-其中，$n$ 是训练数据的总数，求和是在所有的训练输入 $x$ 上进行的，$a$ 是输入为 $x$ 时神经元的实际输出，$y$ 是对应的目标输出。交叉熵能够作为代价函数有两点原因：
-
+为了解决这种问题，我们引入交叉熵代价函数：$C=-\frac{1}{n}\sum_{x}\left [ y\ln a +(1-y)\ln(1-a) \right ]$，其中，$n$ 是训练数据的总数，求和是在所有的训练输入 $x$ 上进行的，$a$ 是输入为 $x$ 时神经元的实际输出，$y$ 是对应的目标输出。交叉熵能够作为代价函数有两点原因：
 1. 交叉熵始终是非负的；
 2. 对于所有的训练输入，如果神经元的实际输出接近目标值，那么交叉熵将接近$0$。
 
 综上所述，交叉熵具备代价函数应该具备的基本特性，这些特性也是二次代价函数具备的。但是交叉熵代价函数有一个比二次代价函数更好的特性就是可以避免学习速度下降的问题。
 
-将 $a=\sigma(z)$ 代入交叉熵，并应用链式法则，可得 $\frac{\partial C}{\partial \omega}=-\frac{1}{n}\sum_{x}\left ( \frac{y}{\sigma(z)}-\frac{(1-y)}{1-\sigma(z)} \right )\frac{\partial \sigma}{\partial \omega}=-\frac{1}{n}\sum_{x}\left ( \frac{y}{\sigma(z)}-\frac{(1-y)}{1-\sigma(z)} \right ){\sigma}'(z)x$$=-\frac{1}{n}\sum_{x}\frac{y(1-\sigma(z))-(1-y)\sigma(z)}{\sigma(z)(1-\sigma(z))}\sigma(z)(1-\sigma(z))x=\frac{1}{n}\sum_{x}x(\sigma(z)-y)$。同理可得 $\frac{\partial C}{\partial b}=\frac{1}{n}\sum_{x}(\sigma(z)-y)$。从以上结果可以看出权重学习速度受到 $\sigma(z)-y$，也就是输出误差的影响。误差越大，学习速度越快。这就是我们期待的结果。
+将 $a=\sigma(z)$ 代入交叉熵，并应用链式法则，可得：
+$$
+\begin{eqnarray} \frac{\partial C}{\partial \omega}&=&-\frac{1}{n}\sum_{x}\left ( \frac{y}{\sigma(z)}-\frac{(1-y)}{1-\sigma(z)} \right )\frac{\partial \sigma}{\partial \omega}\\&=&-\frac{1}{n}\sum_{x}\left ( \frac{y}{\sigma(z)}-\frac{(1-y)}{1-\sigma(z)} \right ){\sigma}'(z)x\\&=&-\frac{1}{n}\sum_{x}\frac{y(1-\sigma(z))-(1-y)\sigma(z)}{\sigma(z)(1-\sigma(z))}\sigma(z)(1-\sigma(z))x\\&=&\frac{1}{n}\sum_{x}x(\sigma(z)-y) \end{eqnarray} \tag{3-1}
+$$
+同理可得 $\frac{\partial C}{\partial b}=\frac{1}{n}\sum_{x}(\sigma(z)-y)$。从以上结果可以看出权重学习速度受到 $\sigma(z)-y$，也就是输出误差的影响。误差越大，学习速度越快。这就是我们期待的结果。
 
 以上讨论只研究了一个神经元的交叉熵，现将其推广到多层多神经元网络上。假设 $y=y_1,y_2,...$ 是输出神经元上的目标值，而 $a_1^L,a_2^L,...$ 是实际输出值，那么我们定义交叉熵如下：
 $$
@@ -420,13 +419,13 @@ $$
 
 创建网络之后，我们需要进行权重和偏置的初始化，之前采用的初始化方式是根据独立高斯随机变量来选择权重和偏置，它们被归一化为均值为0，标准差为1。但这种方式会对网络学习的速度造成潜在影响。假设我们使用1000维的训练输入 $x$ ，其中一般的输入为1，另一半为0，那么隐藏神经元的带权和为 $z=\sum_j \omega_j x_j + b$。由于独立随机变量和的方差是每个独立随机变量方差的和，所以 $z$ 本身是一个均值为0，标准差为 $\sqrt{501}\approx 22.4$ 的高斯分布：
 
-![宽高斯分布](/assets/img/post/宽高斯分布.JPG)
+<p style="text-align:center"><img src="/assets/img/post/宽高斯分布.JPG"></p>
 
-从图中可以看出 $\left | z \right |$ 会变得非常的大，那么隐藏神经元的输出 $\sigma(z)$ 就会接近1或者0，也就表示我们的隐藏神经元会饱和，这些权重会学习的非常缓慢。
+从图中可以看出 $z$ 的模会变得非常的大，那么隐藏神经元的输出 $\sigma(z)$ 就会接近1或者0，也就表示我们的隐藏神经元会饱和，这些权重会学习的非常缓慢。
 
 为了避免这种类型的饱和，我们使用均值为0，标准差为 $1/\sqrt{n_{in}}$ 的高斯随机分布初始化这些权重（$n_{in}$为神经元的输入个数）。假设我们使用1000维的训练输入 $x$ ，其中一般的输入为1，另一半为0，那么隐藏神经元的带权和 $z=\sum_j \omega_j x_j + b$ 就变成了一个均值为0，标准差为 $\sqrt{3/2} \approx 1.22$ 的高斯分布：
 
-![窄高斯分布](/assets/img/post/窄高斯分布.JPG)
+<p style="text-align:center"><img src="/assets/img/post/窄高斯分布.JPG"></p>
 
 这样的神经元更不可能饱和，基本不会遇到学习速度下降的问题。
 
