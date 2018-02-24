@@ -28,9 +28,9 @@ make install
 有时由于网络不稳定，国内用户访问软件源的速度极慢，这时可以考虑用国内的软件源替换官方软件源：
 
 ```shell
-sudo mv /etc/apt/sources.list /etc/apt/sources.list.backup		# 备份官方软件源
-sudo mv sources.list /etc/apt/		# 更换其他软件源
-sudo apt-get update		# 更新软件源
+sudo mv /etc/apt/sources.list /etc/apt/sources.list.backup	# 备份官方软件源
+sudo mv sources.list /etc/apt/					# 更换其他软件源
+sudo apt-get update						# 更新软件源
 ```
 
 替换用的软件源要自行下载，国内很多高校机构和互联网公司都有自己的软件源，例如[中科大软件源](https://mirrors.ustc.edu.cn/repogen/)，需要时可自行搜索。
