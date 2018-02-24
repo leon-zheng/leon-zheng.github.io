@@ -20,7 +20,7 @@ tags: [Linux, 备忘]
 ```shell
 apt-get source <package-name>	# 获取软件源
 cd <package-name>
-./configure --prefix=$HOME		# 设置软件安装目录，若没有配置文件可直接修改 Makefile
+./configure --prefix=$HOME	# 设置软件安装目录，若没有配置文件可直接修改 Makefile
 make
 make install
 ```
@@ -29,8 +29,8 @@ make install
 
 ```shell
 sudo mv /etc/apt/sources.list /etc/apt/sources.list.backup		# 备份官方软件源
-sudo mv sources.list /etc/apt/									# 更换其他软件源
-sudo apt-get update												# 更新软件源
+sudo mv sources.list /etc/apt/		# 更换其他软件源
+sudo apt-get update		# 更新软件源
 ```
 
 替换用的软件源要自行下载，国内很多高校机构和互联网公司都有自己的软件源，例如[中科大软件源](https://mirrors.ustc.edu.cn/repogen/)，需要时可自行搜索。
