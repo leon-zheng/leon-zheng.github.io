@@ -21,7 +21,23 @@ layout: post
 
 
 
+```python
+import cv2		#import
+img = cv2.imread('demo.jpg')
+```
 
 
-<font color="#fff">aaaaa aaaaaaa aaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaa aaaaaaa aaaaaaaaa aaaaaaa aaaaaaa aaaaaaa aaa aa aaaaa aaaaaaa aaaaaa aaaaaaa</font>
+
+```shell
+git status
+git add *
+git commit -m "update"
+git push -u origin master
+```
+
+
+
+
+
+<font color="#fff">----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ------ ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----</font>
 
