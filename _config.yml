@@ -19,19 +19,20 @@ weibo: MisterDaYang # add your Linkedin handle
 email: misterdayang@gmail.com # add your Email address
 
 # Disqus
-discus-identifier: mr-brown # add your discus identifier
+discus-identifier:  # add your discus identifier
 
 # Tracker
 analytics: # Google Analytics
 
 # Build Settings
 markdown: kramdown
+kramdown:
+    toc_levels: 1..2
 mathjax: true
 plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jemoji
-
 paginate: 8
 paginate_path: "/page/:num"
 
