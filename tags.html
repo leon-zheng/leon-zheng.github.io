@@ -5,7 +5,27 @@ permalink: /tags/
 ---
 {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 {% assign tag_words = site_tags | split:',' | sort %}
+<style>
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #f0f0f0;
+  color: #555;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+}
 
+#myBtn:hover {
+  background-color: #555;
+  color: #fff;
+}
+</style>
 <section class="blog-tags">
   <h1>Tags in Blog</h1>
   <ul class="tags">
@@ -28,3 +48,21 @@ permalink: /tags/
     {% endif %}{% endfor %}
   {% endunless %}{% endfor %}
 </section>
+<button onclick="topFunction()" id="myBtn" title="回顶部"><b>返回顶部</b></button>
+  <script>
+    // 当网页向下滑动 20px 出现"返回顶部" 按钮
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {console.log(121);
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+      } else {
+        document.getElementById("myBtn").style.display = "none";
+      }
+    }
+ 
+    // 点击按钮，返回顶部
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
