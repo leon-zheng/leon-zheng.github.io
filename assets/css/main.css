@@ -668,6 +668,7 @@ table tfoot td {
 .wrapper {
   max-width: 100%;
   position: relative;
+  top: 40px;
 }
 
 .post, .article-page {
@@ -1005,7 +1006,7 @@ a.newer-posts:hover {
 
 /* - - - - - - - - - - Post Page Styles - - - - - - - - - - */
 .wrap-content {
-  padding: 20px;
+  padding:20px;
 }
 
 .header-page {
@@ -1265,6 +1266,9 @@ a.newer-posts:hover {
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width: 480px) {
+  .wrapper {
+  top: 35px;
+  }
   .nav {
   height:35px;
   }
