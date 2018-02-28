@@ -1,8 +1,8 @@
 ---
-title: 神经网络与深度学习
+title: 神经网络与深度学习 Part I
 layout: post
 img: nn.jpg
-tags: [神经网络, 机器学习]
+tags: [神经网络, 深度学习]
 ---
 
 * TOC
@@ -431,15 +431,3 @@ $$
 <p style="text-align:center"><img src="/assets/img/post/窄高斯分布.JPG"></p>
 
 这样的神经元更不可能饱和，基本不会遇到学习速度下降的问题。
-
-
-
-## 4. 深度学习
-
-### 4.1 卷积神经网络的向后传播
-
-https://www.cnblogs.com/pinard/p/6494810.html
-
-http://www.cnblogs.com/tornadomeet/p/3468450.html
-
-持续更新中……
