@@ -439,6 +439,7 @@ $$
 ### 4.1 卷积神经网络的向后传播
 
 https://www.cnblogs.com/pinard/p/6494810.html
+
 http://www.cnblogs.com/tornadomeet/p/3468450.html
 
 持续更新中……
