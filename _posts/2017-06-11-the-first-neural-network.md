@@ -1,8 +1,8 @@
 ---
-title: 神经网络与深度学习 Part I
+title: 初识神经网络
 layout: post
 img: nn.jpg
-tags: [神经网络, 深度学习]
+tags: [神经网络, 机器学习]
 ---
 
 * TOC
@@ -131,11 +131,11 @@ $Repeat:$
 
 
 
-## 2. 反向传播算法如何工作##
+## 2. 反向传播算法如何工作
 
 上一章我们得出了降低拟合误差的算法，但算法中涉及到的梯度计算还未解决。对于梯度计算，链式法则是本质且直观的解法，但由于其代数式非常复杂，我们需要寻找更简便的方法。反向传播算法最初在$1970$年代提及，但直到$1986$年*David Rumelhart, Geoffrey Hinton, Ronald Williams*的著名论文人们才发现反向传播算法比传统方法更快。现在，反向传播算法已经是神经网络学习的重要组成部分了。
 
-### 2.1 神经网络中使用矩阵快速计算输出的方法###
+### 2.1 神经网络中使用矩阵快速计算输出的方法
 
 我们使用 $\omega_{jk}^{l}$ 表示从第 $l-1$ 层的第 $k$ 个神经元到第 $l$ 层的第 $j$ 个神经元的链接上的权重，使用 $b_{j}^{l}$ 表示第 $l$ 层第 $j$ 个神经元的偏置，使用 $a_{j}^{l}$ 表示第 $l$ 层第 $j$ 个神经元的激活值。有了这些表示，第 $l$ 层的第 $j$ 个神经元的激活值就和第 $l-1$ 层的激活值通过方程联系起来了：
 $$
@@ -147,7 +147,7 @@ a^{l}=\sigma(\omega^{l}a^{l-1}+b^{l})\tag{2-2}
 $$
 在使用这个方程计算 $a^{l}$ 的过程中，我们计算了中间量 $z^{l}\equiv\omega^{l}a^{l-1}+b^{l}$。我们将 $z^{l}$ 称之为第 $l$ 层所有神经元的**带权输入**。
 
-### 2.2 关于代价函数的两个假设###
+### 2.2 关于代价函数的两个假设
 
 反向传播的目标是计算代价函数 $C$ 分别关于 $\omega$ 和 $b$ 的偏导数 $\partial C/\partial \omega$ 和 $\partial C/\partial b$。原始的二次代价函数为 ：
 $$
@@ -160,13 +160,13 @@ $$
 1. 代价函数可以被写成一个在每个训练样本 $x$ 上的代价函数 $C_{x}=\frac{1}{2}\left\|y(x)-a^{L}\right\|^{2}$ 的均值 $C=\frac{1}{n}\sum_{x}C_{x}$。
 2. 代价函数可以写作神经网络输出的函数。对于二次代价函数来说，$C=\frac{1}{2n}\sum_{x}\left\|y(x)-a^{L}\right\|^{2}$，对于确定的训练集，$n,x$ 是确定的，从而 $y(x)$ 也是确定的，所以该代价函数是神经网络输出 $a^{L}$ 的函数。
 
-### 2.3 *Hadamard* 乘积###
+### 2.3 *Hadamard* 乘积
 
 假设 $s$ 和 $t$ 是两个维度相同的向量或矩阵，那么我们使用 $s\odot t$ 表示**按元素**的乘积，这种乘法称为***Hadamard* 乘积**。
 
 *numpy*中可以使用 “$ * $” 运算符实现，*Matlab* 则使用 “$.*$” 运算符实现。
 
-### 2.4 反向传播的四个基本方程###
+### 2.4 反向传播的四个基本方程
 
 反向传播其实是对权重和偏置变化影响代价函数过程的理解，最终极的含义其实就是计算偏导数 $\partial C/\partial \omega_{jk}^{l}$ 和 $\partial C/\partial b_{j}^{l}$。为了计算这些值，我们引入一个中间变量 $\delta_{j}^{l}$，并将其称之为第 $l$ 层第 $j$ 个神经元上的误差。反向传播将给出计算误差 $\delta_{j}^{l}$ 的流程，然后将其关联到计算 $\partial C/\partial \omega_{jk}^{l}$ 和 $\partial C/\partial b_{j}^{l}$ 上。
 
@@ -207,14 +207,14 @@ $$
 \frac{\partial C}{\partial \omega^{l}}=\delta^{l}(a^{l-1})^{T}\tag{2-8}
 $$
 
-### 2.5 四个基本方程的证明###
+### 2.5 四个基本方程的证明
 
 1. 由定义可知，$\delta_{j}^{l}=\frac{\partial C}{\partial z_{j}^{l}}$。应用链式法则，$\delta_{j}^{L}=\sum_{k}\frac{\partial C}{\partial a_{k}^{L}} \cdot \frac{\partial a_{k}^{L}}{\partial z_{j}^{L}}$。由于第 $k$ 个神经元的输出激活值 $a_{k}^{L}$ 只依赖于第 $k$ 个神经元的带权输入 $z_{k}^{L}$，所以当 $k\neq j$ 时， $\frac{\partial a_{k}^{L}}{\partial z_{j}^{L}}$的值为 $0$，$\delta_{j}^{L}$ 的结果就简化为 $\delta_{j}^{L}=\frac{\partial C}{\partial a_{j}^{L}} \cdot \frac{\partial a_{j}^{L}}{\partial z_{j}^{L}}=\frac{\partial C}{\partial a_{j}^{L}} \cdot{\delta}'(z_{j}^{L})$。这正是分量形式的方程$1$。
 2. $\delta_{j}^{l}=\frac{\partial C}{\partial z_{j}^{l}}=\sum_{k}\frac{\partial C}{\partial z_{k}^{l+1}} \cdot\frac{\partial z_{k}^{l+1}}{\partial z_{j}^{l}}=\sum_{k}\frac{\partial z_{k}^{l+1}}{\partial z_{j}^{l}} \cdot\delta_{k}^{l+1}$，由于 $z_{k}^{l+1}=\sum_{j}\omega_{kj}^{l+1}a_{j}^{l}+b_{k}^{l+1}$，因此 $\frac{\partial z_{k}^{l+1}}{\partial z_{j}^{l}}=\omega_{kj}^{l+1}\cdot {\sigma}'(z_{j}^{l})$，代入前式可得 $\delta_{j}^{l}=\sum_{k}\omega_{kj}^{l+1}\delta_{k}^{l+1} {\sigma}'(z_{j}^{l})$。
 3. $\delta_{j}^{l}=\frac{\partial C}{\partial z_{j}^{l}}=\frac{\partial C}{\partial b_{j}^{l}}\frac{\partial b_{j}^{l}}{\partial z_{j}^{l}}$。由于 $z_{k}^{l}=\sum_{j}\omega_{kj}^{l}a_{j}^{l-1}+b_{k}^{l}$，所以 $\frac{\partial b_{j}^{l}}{\partial z_{j}^{l}}=1$，故 $\frac{\partial C}{\partial b_{j}^{l}}=\delta_{j}^{l}$。
 4. $\delta_{j}^{l}=\frac{\partial C}{\partial z_{j}^{l}}=\frac{\partial C}{\partial \omega_{jk}^{l}}\frac{\partial \omega_{jk}^{l}}{\partial z_{j}^{l}}$。由于 $\frac{\partial \omega_{jk}^{l}}{\partial z_{j}^{l}}=\frac{1}{a_{k}^{l-1}}$，所以 $\frac{\partial C}{\partial \omega_{jk}^{l}}=a_{k}^{l-1}\delta_{j}^{l}$。
 
-### 2.6 反向传播算法###
+### 2.6 反向传播算法
 
 1. 输入 $x$ ：为输入层设置对应的激活值 $a^{1}$。
 2. 前向传播：对每个 $l=2,3,...,L$ 计算相应的 $z^{l}=\omega^{l}a^{l-1}+b^{l}$ 和 $a^{l}=\sigma(z^{l})$。
@@ -228,9 +228,9 @@ $$
 
 
 
-## 3. 改进神经网络的学习方法##
+## 3. 改进神经网络的学习方法
 
-### 3.1 交叉熵代价函数###
+### 3.1 交叉熵代价函数
 
 在一般的神经网络中，神经元在犯错比较明显（当前的权重或偏置与理想的权重或偏置差距较大）时的学习速度缓慢。由于神经元是通过改变权重和偏置，并以代价函数的偏导数 $\partial C/\partial \omega$ 和 $\partial C/\partial b$ 所决定的速度学习，因此神经元学习缓慢的根本原因就是偏导数偏小。
 
@@ -240,7 +240,7 @@ $$
 
 根据 $\sigma(z)$ 的函数性质，当神经元的实际输出与期望输出差距很大（例如期望输出为$0$，而实际输出接近$1$）时，${\sigma}'(z)$ 的值很小，从而使 $\partial C/\partial \omega$ 和 $\partial C/\partial b$ 的值变得很小，导致神经元学习缓慢。
 
-#### 3.1.1 引入交叉熵代价函数####
+#### 3.1.1 引入交叉熵代价函数
 
 为了解决这种问题，我们引入交叉熵代价函数：$C=-\frac{1}{n}\sum_{x}\left [ y\ln a +(1-y)\ln(1-a) \right ]$，其中，$n$ 是训练数据的总数，求和是在所有的训练输入 $x$ 上进行的，$a$ 是输入为 $x$ 时神经元的实际输出，$y$ 是对应的目标输出。交叉熵能够作为代价函数有两点原因：
 1. 交叉熵始终是非负的；
@@ -260,7 +260,7 @@ C=-\frac{1}{n}\sum_x \sum_j \left[ y_j \ln a_j^L + (1-y_j) \ln (1-a_j^L) \right]
 $$
 需要注意的是，上述讨论只在输出神经元是S型神经元时有效，即当输出神经元是S型神经元时，交叉熵代价函数是比二次代价函数更好的选择。然而当输出神经元使用线性神经元时，由于 ${\sigma}'(z)$ 项的消失，二次代价函数将不会导致学习速度下降的问题。因而在这种情况下，二次代价函数就是一种合适的选择。
 
-#### 3.1.2 交叉熵的来源####
+#### 3.1.2 交叉熵的来源
 
 使用二次代价函数的神经网络学习速度下降的原因在于代价函数关于网络参数的偏导数中包含 ${\sigma}'(z)$ 这一项，因此我们希望对于一个训练样本，其代价函数的偏导数满足：
 $$
@@ -271,7 +271,7 @@ $$
 $$
 如果我们选择的代价函数满足这些条件，那么就可以实现初始误差越大，神经元学习越快的特性。实际上，我们可以通过数学的直觉推导出交叉熵的形式。由链式法则，我们有 $\frac{\partial C}{\partial b}=\frac{\partial C}{\partial a}{\sigma}'(z)$，代入 ${\sigma}'(z)=\sigma(z)(1-\sigma(z))=a(1-a)$ 后上个等式就变成 $\frac{\partial C}{\partial b}=\frac{\partial C}{\partial a}a(1-a)$。结合我们希望得到的 $\frac{\partial C}{\partial b}=(a-y)$ 就有了 $\frac{\partial C}{\partial a}=\frac{a-y}{a(1-a)}$。然后对此方程关于 $a$ 进行积分，得到 $C=-\left [ y\ln a +(1-y)\ln(1-a) \right ]+constant$。这是一个单独的训练样本对代价函数的贡献。为了得到整个训练集的代价函数，我们需要对所有的训练样本进行平均，得到了 $C=-\frac{1}{n}\sum_{x}\left [ y\ln a +(1-y)\ln(1-a) \right ]+constant$。
 
-#### 3.1.3 柔性最大值####
+#### 3.1.3 柔性最大值
 
 对于学习速度缓慢的问题还有另一种解决问题的方法：**柔性最大值 (*softmax*)** 神经元层。
 
@@ -352,7 +352,7 @@ $$
 
 最后为了使用反向传播算法，我们需要计算 $\delta_j^L$。由定义，$\delta_j^L\equiv\frac{\partial C}{\partial z_j^L}=\frac{1}{\sum_k e^{z_k^L}}\cdot \frac{\partial \sum_k e^{z_k^L}}{\partial z_j^L}-\frac{1}{e^{z_y^L}}\cdot \frac{\partial e^{z_y^L}}{\partial z_j^L}$，而$\frac{\partial \sum_k e^{z_k^L}}{\partial z_j^L}=e^{z_j^L}$，$\frac{\partial e^{z_y^L}}{\partial z_j^L}=e^{z_j^L}\cdot \mathbf{y}_j$，故 $\delta_j^L=a_j^L-\mathbf{y}_j$。
 
-### 3.2 过度拟合和规范化###
+### 3.2 过度拟合和规范化
 
 即使一个模型能够很好的拟合已有的数据，但并不表示是⼀个好模型。因为这可能只是因为模型中足够的⾃由度使得它可以描述几乎所有给定大小的数据集，而不需要真正洞察现象的本质。所以发生这种情形时，模型对已有的数据会表现的很好，但是对新的数据很难泛化。对⼀个模型真正的测验就是它对没见过的场景的预测能力。
 
