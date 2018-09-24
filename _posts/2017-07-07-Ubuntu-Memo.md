@@ -5,6 +5,8 @@ img: ubuntu.jpg
 tags: [Linux, 备忘]
 ---
 
+###软件安装
+
 在 Ubuntu 中安装软件主要有两种方式：本地安装和在线安装。本地安装需要提前将软件包下载到工作目录，然后执行：
 
 `sudo dpkg -i <software.deb>`
@@ -14,6 +16,10 @@ tags: [Linux, 备忘]
 `sudo apt-get install -f`
 
 然后再执行安装命令即可。
+
+在线安装需要通过Ubuntu提供的APT安装包管理器，执行：
+
+`sudo apt-get install <software>`
 
 以上命令需要 sudo 权限，并且软件会安装到系统目录，所有使用该计算机的用户都能使用软件。若没有计算机权限，可以使用以下命令将软件安装的自己的目录下：
 
@@ -42,4 +48,17 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
 sudo add-apt-repository 'deb https://typora.io linux/'
 sudo apt-get update
 sudo apt-get install typora
+````
+
+###恢复远程连接
+
+ssh远程连接工具非常强大，但有时由于网络不稳定等不可控因素导致连接中断，使正在运行的程序被迫停止。然而这种情况可以通过安装screen软件来避免
+
+````shell
+screen -S <screen name>                 //创建并进入新会话
+python demo.py                          //在新会话中执行指令
+
+#不可控因素导致连接中断
+
+screen -r <screen name>                 //恢复运行状态
 ````
