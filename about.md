@@ -28,8 +28,8 @@ layout: post
 
 ------
 
-- [Radiation Prediction System](https://github.com/leon-zheng/radiation-prediction)
-- [Spectrum Analyzer Remote Control](https://github.com/leon-zheng/SA-remote-control)
+- Kaggle Competition: "[House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)", Top 5% (175/4055, Oct 8, 2018)
+- Kaggle Competition: "[Titanic: Machine Learning from Disaster](https://www.kaggle.com/c/titanic)", Top 6% (567/9809, Oct 8, 2018)
 
 <br/>
 
@@ -40,7 +40,6 @@ layout: post
 - 周志华: [机器学习](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/MLbook2016.htm)
 - 李航: [统计学习方法](https://book.douban.com/subject/10590856/)
 - Michael Nielsen: [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/)
-- Ian Goodfellow, Yoshua Bengio and Aaron Courville: [Deep Learning](http://www.deeplearningbook.org/)
 
 
 
