@@ -39,7 +39,10 @@ layout: post
 
 - 周志华: [机器学习](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/MLbook2016.htm)
 - 李航: [统计学习方法](https://book.douban.com/subject/10590856/)
+- 陈儒: [Python 源码剖析](https://book.douban.com/subject/3117898/)
+- Brian Kernighan & Dennis Ritchie: [The C Programming Language](http://www.thecprogramminglanguage.com/)
 - Michael Nielsen: [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/)
+- Adrian Rosebrock: [Deep Learning for Computer Vision with Python](https://www.pyimagesearch.com/deep-learning-computer-vision-python-book/)
 
 
 
