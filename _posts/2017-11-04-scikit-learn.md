@@ -1,5 +1,5 @@
 ---
-title: Python机器学习 -- Scikit-learn
+title: Python 机器学习 -- Scikit-learn
 layout: post
 img: scikit-learn.png
 tags: [Python, 机器学习]
