@@ -12,11 +12,9 @@ site-twitter: #if your site has a twitter account, enter it here
 author: Leon Zheng # add your name
 author-img: edward.jpg # add your photo
 about-author: Technologies come and go, but insight is forever. # add description
-twitter: MisterDaYang # add your Twitter handle
-facebook: mr.leon.zheng # add your Facebook handle
 github: leon-zheng # add your Github handle
 weibo: MisterDaYang # add your Linkedin handle
-email: xtu.zly@foxmail.com # add your Email address
+email: zlycoder@qq.com # add your Email address
 
 # Disqus
 discus-identifier:  # add your discus identifier
